@@ -1,0 +1,442 @@
+/* =========================================
+   PRODUCT DETAILS PAGE
+========================================= */
+
+.product-details {
+    width: 90%;
+    max-width: 1100px;
+
+    margin: 60px auto;
+    padding: 40px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 70px;
+
+    background: #ffffff;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   PRODUCT IMAGE SECTION
+========================================= */
+
+.product-image {
+    width: 50%;
+    min-height: 500px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #f7f7f7;
+
+    border-radius: 15px;
+
+    padding: 25px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   IMAGE SLIDER
+========================================= */
+
+.product-image-slider {
+    position: relative;
+
+    width: 100%;
+    height: 420px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+
+/* Main product image */
+
+.product-main-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+/* =========================================
+   SLIDER BUTTONS
+========================================= */
+
+.slider-btn {
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.6);
+
+    color: white;
+
+    font-size: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    transition: 0.3s;
+}
+
+
+.slider-btn:hover {
+    background: rgba(0, 0, 0, 0.85);
+
+    transform: translateY(-50%) scale(1.05);
+}
+
+
+/* Left arrow */
+
+.product-image-slider .slider-btn:first-child {
+    left: 10px;
+}
+
+
+/* Right arrow */
+
+.product-image-slider .slider-btn:last-child {
+    right: 10px;
+}
+
+
+/* =========================================
+   PRODUCT THUMBNAILS
+========================================= */
+
+.product-thumbnails {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 18px;
+}
+
+
+/* Thumbnail */
+
+.thumbnail {
+    width: 70px;
+    height: 70px;
+
+    padding: 5px;
+
+    object-fit: contain;
+
+    background: white;
+
+    border: 2px solid transparent;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition: 0.3s;
+}
+
+
+.thumbnail:hover {
+    border-color: #999;
+
+    transform: scale(1.05);
+}
+
+
+/* Active thumbnail */
+
+.thumbnail.active {
+    border-color: #222;
+}
+
+
+/* =========================================
+   PRODUCT INFORMATION
+========================================= */
+
+.product-details-info {
+    width: 50%;
+}
+
+
+.product-details-info h1 {
+    font-size: 38px;
+
+    margin: 0 0 20px;
+
+    color: #222;
+}
+
+
+.price {
+    font-size: 28px;
+
+    font-weight: 600;
+
+    margin: 0 0 20px;
+
+    color: #222;
+}
+
+
+.category {
+    font-size: 16px;
+
+    color: #666;
+
+    margin-bottom: 20px;
+}
+
+
+.subcategory {
+    font-size: 16px;
+
+    color: #666;
+
+    margin-bottom: 20px;
+}
+
+
+.description {
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    color: #555;
+
+    margin-bottom: 20px;
+}
+
+
+.stock {
+    font-size: 16px;
+
+    color: #333;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================
+   ADD TO CART BUTTON
+========================================= */
+
+.add-cart-btn {
+    padding: 14px 35px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: #222;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.add-cart-btn:hover {
+    background: #444;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   LOADING
+========================================= */
+
+.loading {
+    text-align: center;
+
+    margin-top: 100px;
+
+    font-size: 20px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .product-details {
+        width: 90%;
+
+        margin: 30px auto;
+
+        padding: 20px;
+
+        flex-direction: column;
+
+        gap: 30px;
+    }
+
+
+    .product-image {
+        width: 100%;
+
+        min-height: 420px;
+
+        padding: 15px;
+    }
+
+
+    .product-image-slider {
+        width: 100%;
+
+        height: 350px;
+    }
+
+
+    .product-main-image {
+        width: 100%;
+
+        height: 100%;
+    }
+
+
+    .slider-btn {
+        width: 32px;
+        height: 32px;
+
+        font-size: 15px;
+    }
+
+
+    .product-image-slider .slider-btn:first-child {
+        left: 5px;
+    }
+
+
+    .product-image-slider .slider-btn:last-child {
+        right: 5px;
+    }
+
+
+    .product-thumbnails {
+        gap: 8px;
+
+        margin-top: 12px;
+    }
+
+
+    .thumbnail {
+        width: 55px;
+        height: 55px;
+    }
+
+
+    .product-details-info {
+        width: 100%;
+
+        text-align: center;
+    }
+
+
+    .product-details-info h1 {
+        font-size: 30px;
+    }
+
+
+    .price {
+        font-size: 24px;
+    }
+
+
+    .description {
+        font-size: 16px;
+    }
+
+
+    .add-cart-btn {
+        width: 100%;
+
+        max-width: 350px;
+    }
+
+}
+
+/* =========================================
+   STOCK STATUS
+========================================= */
+
+.stock {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.low-stock {
+    font-size: 16px;
+    font-weight: 700;
+    color: #e67e22 !important;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.details-out-of-stock {
+    font-size: 16px;
+    font-weight: 700;
+    color: red !important;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.unavailable-btn {
+    background-color: #999;
+    color: white;
+    cursor: not-allowed;
+    opacity: 0.7;
+    margin-top: 10px;
+}

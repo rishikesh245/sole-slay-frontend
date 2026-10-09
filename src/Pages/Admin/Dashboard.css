@@ -1,0 +1,267 @@
+/* =========================================
+   ADMIN DASHBOARD
+========================================= */
+
+.admin-dashboard {
+    padding: 40px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.dashboard-header {
+    margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+    margin: 0 0 8px;
+    font-size: 32px;
+    color: #222;
+}
+
+.dashboard-header p {
+    margin: 0;
+    color: #777;
+    font-size: 15px;
+}
+
+
+/* =========================================
+   DASHBOARD CARDS
+========================================= */
+
+.dashboard-cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.dashboard-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 25px;
+
+    background-color: white;
+
+    border-radius: 12px;
+
+    border: 1px solid #eee;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =========================================
+   CARD ICON
+========================================= */
+
+.card-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background-color: #fff3e0;
+
+    font-size: 24px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================
+   CARD CONTENT
+========================================= */
+
+.dashboard-card h3 {
+    margin: 0 0 5px;
+
+    font-size: 16px;
+
+    color: #444;
+}
+
+
+.card-number {
+    margin: 0 0 4px !important;
+
+    font-size: 25px !important;
+
+    font-weight: 700;
+
+    color: #222 !important;
+}
+
+
+.dashboard-card span {
+    font-size: 12px;
+
+    color: #888;
+}
+
+
+/* =========================================
+   DASHBOARD SECTIONS
+========================================= */
+
+.dashboard-section {
+    margin-top: 35px;
+}
+
+
+.dashboard-section h2 {
+    margin-bottom: 18px;
+
+    font-size: 21px;
+
+    color: #222;
+}
+
+
+/* =========================================
+   QUICK ACTIONS
+========================================= */
+
+.quick-actions {
+    display: flex;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+
+.quick-actions button {
+    padding: 12px 20px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background-color: #ff9800;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+
+.quick-actions button:hover {
+    background-color: #f57c00;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================
+   RECENT ACTIVITY
+========================================= */
+
+.activity-box {
+    padding: 25px;
+
+    background-color: white;
+
+    border: 1px solid #eee;
+
+    border-radius: 10px;
+
+    color: #777;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+
+.activity-box p {
+    margin: 0;
+
+    color: #888;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .dashboard-cards {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .admin-dashboard {
+        padding: 20px;
+    }
+
+
+    .dashboard-header h1 {
+        font-size: 26px;
+    }
+
+
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+
+
+    .quick-actions {
+        flex-direction: column;
+    }
+
+
+    .quick-actions button {
+        width: 100%;
+    }
+
+}

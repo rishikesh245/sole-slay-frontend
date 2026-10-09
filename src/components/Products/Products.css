@@ -1,0 +1,339 @@
+.products {
+    padding: 70px 80px;
+    background-color: #f8f9fa;
+}
+
+.products h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: #222;
+}
+
+
+/* =========================================
+   PRODUCT CONTAINER
+========================================= */
+
+.product-list {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+
+/* =========================================
+   PRODUCT CARD
+========================================= */
+
+.product-card {
+    width: 280px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 15px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+    text-align: center;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================
+   PRODUCT IMAGE SLIDER
+========================================= */
+/* =========================================
+   PRODUCT CARD IMAGE SLIDER
+========================================= */
+
+.product-card-image {
+    position: relative;
+
+    width: 100%;
+    height: 220px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #f7f7f7;
+    border-radius: 10px;
+
+    overflow: visible;
+
+    margin-bottom: 45px;
+}
+
+
+/* Product image */
+
+.product-card-image img {
+    width: 100%;
+    height: 220px;
+
+    object-fit: contain;
+
+    display: block;
+
+    transition: transform 0.3s ease;
+}
+
+
+/* =========================================
+   SLIDER BUTTONS BELOW IMAGE
+========================================= */
+
+.product-card .card-slider-btn {
+    position: absolute;
+
+    top: auto;
+    bottom: -38px;
+
+    transform: none;
+
+    width: 30px;
+    height: 30px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background-color: white;
+    color: #222;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+    opacity: 1;
+
+    z-index: 5;
+
+    transition: all 0.25s ease;
+}
+
+
+/* Previous */
+
+.product-card .card-prev {
+    left: 35%;
+}
+
+
+/* Next */
+
+.product-card .card-next {
+    right: 35%;
+}
+
+
+/* Hover */
+
+.product-card .card-slider-btn:hover {
+    background-color: #222;
+    color: white;
+
+    transform: scale(1.1);
+}
+
+
+/* Click */
+
+.product-card .card-slider-btn:active {
+    transform: scale(0.95);
+}
+
+
+
+/* =========================================
+   PRODUCT CARD BUTTONS
+========================================= */
+
+.product-card button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    white-space: nowrap;
+
+    transition: all 0.25s ease;
+}
+
+
+/* =========================================
+   ADD TO CART BUTTON
+========================================= */
+
+.two-buttons button:first-child {
+    background-color: #ff9800;
+    color: white;
+}
+
+.two-buttons button:first-child:hover {
+    background-color: #f57c00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================
+   VIEW DETAILS BUTTON
+========================================= */
+
+.two-buttons button:last-child {
+    background-color: #ffc107;
+    color: #222;
+}
+
+.two-buttons button:last-child:hover {
+    background-color: #ffb300;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================
+   TWO BUTTONS
+========================================= */
+
+.two-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .product-card-image {
+        height: 220px;
+        margin-bottom: 45px;
+    }
+
+    .product-card-image img {
+        height: 220px;
+    }
+
+    .card-slider-btn {
+        width: 28px;
+        height: 28px;
+
+        font-size: 13px;
+    }
+
+    .card-prev {
+        left: 32%;
+    }
+
+    .card-next {
+        right: 32%;
+    }
+
+}
+
+
+/* ================================
+   OUT OF STOCK IMAGE
+================================ */
+
+.product-card-image {
+    position: relative;
+}
+
+.out-of-stock-image {
+    filter: blur(5px);
+    opacity: 0.6;
+}
+
+
+/* ================================
+   OUT OF STOCK BADGE
+================================ */
+
+.out-of-stock-badge {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+
+    padding: 8px 14px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    border-radius: 5px;
+
+    white-space: nowrap;
+
+    z-index: 10;
+}
+
+
+/* =========================================
+   NOTIFY ME BUTTON
+========================================= */
+
+.product-card .notify-btn {
+    background-color: #eef6ff;
+    color: #1976d2;
+
+    border: 1px solid #90caf9;
+
+    cursor: not-allowed;
+
+    opacity: 1;
+
+    padding: 12px 24px;
+
+    font-weight: 600;
+
+    box-shadow: none;
+
+    transition: all 0.25s ease;
+}
+
+
+/* Prevent normal button hover effect */
+
+.product-card .notify-btn:hover {
+    background-color: #e3f2fd;
+    color: #1976d2;
+
+    transform: none;
+
+    box-shadow: none;
+}

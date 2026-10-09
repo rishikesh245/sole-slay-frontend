@@ -1,0 +1,704 @@
+/* =========================================
+   NAVBAR
+========================================= */
+
+.navbar {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    padding: 14px 32px;
+
+    background-color: #111827;
+    color: white;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+
+    box-sizing: border-box;
+
+    gap: 25px;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================
+   LEFT
+========================================= */
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    flex-shrink: 0;
+}
+
+
+/* MENU */
+
+.menu-btn {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #1f2937;
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.menu-btn:hover {
+    background: #374151;
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo-link {
+    text-decoration: none;
+    color: white;
+
+    display: block;
+}
+
+.logo-link:hover {
+    color: white;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    white-space: nowrap;
+}
+
+.logo-icon {
+    font-size: 27px;
+    color: #f97316;
+}
+
+.logo h1 {
+    margin: 0;
+
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   CENTER
+========================================= */
+
+.navbar-center {
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 25px;
+
+    min-width: 0;
+}
+
+
+/* HOME + SHOP */
+
+.nav-item {
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    white-space: nowrap;
+
+    transition: 0.3s;
+}
+
+.nav-item:hover {
+    color: #f97316;
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.search-box {
+    width: 320px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 15px;
+
+    background: white;
+
+    border-radius: 25px;
+
+    box-sizing: border-box;
+}
+
+.search-icon {
+    color: #6b7280;
+
+    font-size: 14px;
+
+    margin-right: 9px;
+
+    flex-shrink: 0;
+}
+
+.search-box input {
+    width: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: #111827;
+
+    font-size: 14px;
+}
+
+.search-box input::placeholder {
+    color: #9ca3af;
+}
+
+
+/* =========================================
+   RIGHT
+========================================= */
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    flex-shrink: 0;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   CART
+========================================= */
+
+.cart-link {
+    color: white;
+
+    text-decoration: none;
+}
+
+.cart-icon {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    font-size: 21px;
+
+    cursor: pointer;
+}
+
+.cart-icon:hover {
+    color: #f97316;
+}
+
+
+/* CART COUNT */
+
+.cart-count {
+    position: absolute;
+
+    top: -10px;
+    right: -12px;
+
+    min-width: 18px;
+    height: 18px;
+
+    padding: 0 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f97316;
+
+    color: white;
+
+    border-radius: 50%;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   USER
+========================================= */
+
+.logged-user {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.logged-user svg {
+    font-size: 18px;
+
+    flex-shrink: 0;
+}
+
+
+/* LOGIN ICON */
+
+.user-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.user-icon:hover {
+    color: #f97316;
+}
+
+
+/* =========================================
+   ADMIN
+========================================= */
+
+.admin-link {
+    color: #d1d5db;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    padding: 7px 10px;
+
+    border: 1px solid #374151;
+
+    border-radius: 6px;
+
+    transition: 0.3s;
+}
+
+.admin-link:hover {
+    color: white;
+
+    background: #1f2937;
+
+    border-color: #f97316;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .navbar {
+        padding: 13px 20px;
+
+        gap: 15px;
+    }
+
+    .navbar-center {
+        gap: 15px;
+    }
+
+    .search-box {
+        width: 240px;
+    }
+
+    .navbar-actions {
+        gap: 14px;
+    }
+
+    .logo h1 {
+        font-size: 20px;
+    }
+}
+
+
+/* =========================================
+   SMALL TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+    .nav-item {
+        display: none;
+    }
+
+    .search-box {
+        width: 250px;
+    }
+
+    .admin-link {
+        display: none;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 11px 15px;
+
+        gap: 10px;
+    }
+
+
+    .navbar-left {
+        gap: 8px;
+    }
+
+
+    .menu-btn {
+        width: 34px;
+        height: 34px;
+
+        font-size: 16px;
+    }
+
+
+    .logo {
+        gap: 6px;
+    }
+
+
+    .logo-icon {
+        font-size: 21px;
+    }
+
+
+    .logo h1 {
+        font-size: 17px;
+    }
+
+
+    .navbar-center {
+        flex: 1;
+
+        justify-content: flex-end;
+    }
+
+
+    .search-box {
+        width: 100%;
+        max-width: 190px;
+
+        height: 36px;
+
+        padding: 0 10px;
+    }
+
+
+    .search-box input {
+        font-size: 12px;
+    }
+
+
+    .navbar-actions {
+        gap: 12px;
+    }
+
+
+    .logged-user {
+        gap: 5px;
+
+        font-size: 13px;
+    }
+
+
+    .logged-user span {
+        display: inline;
+    }
+
+
+    .logged-user svg {
+        font-size: 17px;
+    }
+
+
+    .cart-icon {
+        font-size: 19px;
+    }
+
+
+    .admin-link {
+        display: none;
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .navbar {
+        padding: 10px 11px;
+
+        gap: 7px;
+    }
+
+
+    .logo h1 {
+        font-size: 14px;
+    }
+
+
+    .logo-icon {
+        font-size: 18px;
+    }
+
+
+    .menu-btn {
+        width: 30px;
+        height: 30px;
+
+        font-size: 13px;
+    }
+
+
+    .search-box {
+        max-width: 125px;
+
+        height: 33px;
+    }
+
+
+    .search-box input {
+        font-size: 10px;
+    }
+
+
+    .search-box input::placeholder {
+        font-size: 9px;
+    }
+
+
+    .navbar-actions {
+        gap: 8px;
+    }
+
+
+    .logged-user {
+        font-size: 11px;
+    }
+
+
+    .logged-user svg {
+        font-size: 15px;
+    }
+
+
+    .cart-icon {
+        font-size: 17px;
+    }
+
+
+    .cart-count {
+        top: -8px;
+        right: -9px;
+
+        min-width: 16px;
+        height: 16px;
+
+        font-size: 9px;
+    }
+
+}
+
+
+/* =========================================
+   USER DROPDOWN
+========================================= */
+
+.user-menu-container {
+    position: relative;
+}
+
+
+/* USER BUTTON */
+
+.logged-user {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 7px 10px;
+
+    border: none;
+    background: transparent;
+
+    color: white;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    border-radius: 7px;
+
+    transition: 0.3s;
+}
+
+.logged-user:hover {
+    background: #1f2937;
+    color: #f97316;
+}
+
+
+.logged-user svg {
+    font-size: 17px;
+}
+
+
+.dropdown-arrow {
+    font-size: 14px;
+    margin-left: 2px;
+}
+
+
+/* DROPDOWN */
+
+.user-dropdown {
+    position: absolute;
+
+    top: calc(100% + 10px);
+    right: 0;
+
+    width: 180px;
+
+    background: white;
+
+    border-radius: 8px;
+
+    padding: 8px 0;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+
+    z-index: 2000;
+}
+
+
+/* USER NAME */
+
+.dropdown-user-name {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 12px 15px;
+
+    color: #111827;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    border-bottom: 1px solid #eee;
+}
+
+
+/* DROPDOWN LINKS */
+
+.user-dropdown a,
+.user-dropdown button {
+
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 11px 15px;
+
+    box-sizing: border-box;
+
+    border: none;
+
+    background: transparent;
+
+    color: #374151;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    text-align: left;
+}
+
+
+.user-dropdown a:hover,
+.user-dropdown button:hover {
+
+    background: #f3f4f6;
+
+    color: #f97316;
+}

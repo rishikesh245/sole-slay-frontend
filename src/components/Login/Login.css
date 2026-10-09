@@ -1,0 +1,143 @@
+.login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 2000;
+}
+
+
+.login-popup {
+    width: 350px;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    position: relative;
+
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+}
+
+
+.login-success {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 12px 15px;
+    margin-bottom: 18px;
+
+    background: #d4edda;
+    color: #155724;
+
+    border: 1px solid #c3e6cb;
+    border-radius: 6px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-align: center;
+}
+
+
+.close-login {
+    position: absolute;
+
+    top: 10px;
+    right: 15px;
+
+    border: none;
+    background: none;
+
+    font-size: 25px;
+
+    cursor: pointer;
+}
+
+
+.login-popup h2 {
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+
+.login-popup form {
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    box-shadow: none;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+
+.login-popup input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+}
+
+
+.login-popup form button {
+    width: 100%;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: #222;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+
+.login-popup p {
+    text-align: center;
+
+    margin-top: 20px;
+}
+
+
+.register-link {
+    border: none;
+
+    background: none;
+
+    color: #222;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    margin-left: 5px;
+}

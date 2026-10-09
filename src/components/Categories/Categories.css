@@ -1,0 +1,77 @@
+.categories {
+ padding: 40px 20px;
+ text-align: center;
+}
+
+.categories h2 {
+ 
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.categories p{
+    
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.category-card {
+  width: 200px;
+  height: 200px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  gap: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  
+  padding: 20px;
+
+  cursor: pointer;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.category-icon {
+  font-size: 45px;
+  margin-bottom: 15px;
+  color: #f97316;
+}
+
+
+.shop-now-button {
+ padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+
+    background-color: orange;
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
