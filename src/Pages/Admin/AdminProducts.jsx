@@ -5,7 +5,7 @@ import {
     deleteProduct
 } from "../../api/productApi";
 
-import "./AdminProducts.css";
+import "./Adminproducts.css";
 
 import { Link, useNavigate } from "react-router-dom";
 
