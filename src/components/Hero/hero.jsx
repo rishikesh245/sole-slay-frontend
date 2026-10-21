@@ -1,4 +1,4 @@
-import "./Hero.css";
+import "./hero.css";
 import { FaFire } from "react-icons/fa";
 import shoeLogo from "../../assets/image/shoe-image.jpg";
 
