@@ -13,6 +13,7 @@ function Products({
     price = "All",
     user,
     setShowLogin,
+    setCartMessage,
     
     
 }) {
@@ -29,6 +30,8 @@ function Products({
                 console.log("PRODUCTS:", response.data);
 
                 setProducts(response.data);
+
+
 
             })
             .catch((error) => {
@@ -180,6 +183,7 @@ function Products({
                             user={user}
                             setShowLogin={setShowLogin}
                             stock = {product.stock}
+                            setCartMessage={setCartMessage}
                             
                         />
 

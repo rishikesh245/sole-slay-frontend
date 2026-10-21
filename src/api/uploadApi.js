@@ -1,9 +1,9 @@
+
 import axios from "axios";
 
-const API_URL = "http://localhost:5001/api/upload";
+const API_URL = `${import.meta.env.VITE_API_BASE_URL}/api/upload`;
 
 export const uploadImage = (imageFile) => {
-
     const formData = new FormData();
 
     formData.append("image", imageFile);

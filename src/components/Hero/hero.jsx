@@ -2,7 +2,9 @@ import "./Hero.css";
 import { FaFire } from "react-icons/fa";
 import shoeLogo from "../../assets/image/shoe-image.jpg";
 
+
 function Hero() {
+  
   return (
     <section className="hero">
       <div className="hero-left">
@@ -11,6 +13,8 @@ function Hero() {
           <FaFire className="fire-icon" />
           <span>NEW ARRIVAL</span>
         </div>
+
+  
 
         <h1>
           Find Your <br />

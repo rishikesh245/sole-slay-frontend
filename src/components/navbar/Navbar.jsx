@@ -1,6 +1,6 @@
 import "./Navbar.css";
 import { CartContext } from "../../Context/Context";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import {
@@ -17,13 +17,29 @@ function Navbar({
   setSearchTerm,
   setShowLogin,
   user,
-  setUser
+  setUser,
+  cartMessage,
+  setCartMessage
 }) {
 
   const { cartItems } = useContext(CartContext);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+ useEffect(() => {
+    if (!cartMessage) return;
+
+    const timer = setTimeout(() => {
+        setCartMessage("");
+    }, 2500);
+
+    return () => clearTimeout(timer);
+}, [cartMessage, setCartMessage]);
+
+ 
+
 
   const navigate = useNavigate();
+
+
 
   const isAdmin = user?.role === "admin";
 
@@ -150,7 +166,13 @@ function Navbar({
 
         </Link>
         )}
-
+ 
+        {/* CART SUCCESS MESSAGE */}
+        {cartMessage && (
+          <div className="cart-success-popup">
+            ✓ {cartMessage}
+          </div>
+        )}
 
         {/* USER */}
 

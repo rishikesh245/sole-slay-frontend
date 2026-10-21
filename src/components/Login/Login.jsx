@@ -216,6 +216,7 @@ function Login({ setShowLogin, setUser }) {
                             <input
                                 type="text"
                                 placeholder="Email or Mobile Number"
+                                autoComplete="username"
                                 value={identifier}
                                 onChange={(e) =>
                                     setIdentifier(e.target.value)
@@ -226,6 +227,7 @@ function Login({ setShowLogin, setUser }) {
                             <input
                                 type="password"
                                 placeholder="Password"
+                                autoComplete="current-password"
                                 value={password}
                                 onChange={(e) =>
                                     setPassword(e.target.value)

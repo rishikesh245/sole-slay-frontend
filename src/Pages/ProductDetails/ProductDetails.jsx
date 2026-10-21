@@ -7,7 +7,7 @@ import { getProductById } from "../../api/productApi";
 
 
 function ProductDetails({user,
-    setShowLogin}
+    setShowLogi,setCartMessage}
     
 ) {
 
@@ -117,11 +117,19 @@ function ProductDetails({user,
 
         if (existingProduct) {
             if(existingProduct.quantity >= product.stock) {
-                ale
+                return;
             }
         }
 
+        if (product.stock <= 0) {
+            return;
+        }
+
         addToCart();
+
+        if (setCartMessage) {
+            setCartMessage(`${product.name} added to cart!`);
+        }
     }
 
     // =========================================

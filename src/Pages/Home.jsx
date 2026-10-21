@@ -8,9 +8,9 @@ function Home({
     category = "All",
     subcategory = "",
     price = "All",
-    user = {user},
-    setShowLogin={setShowLogin},
-    
+    user,
+    setShowLogin,
+    setCartMessage,
     isShop = false
 }) {
 
@@ -35,6 +35,8 @@ function Home({
                     price = {price}
                     user = {user}
                     setShowLogin={setShowLogin}
+                    setCartMessage={setCartMessage}
+            
 
                     
                 />
@@ -51,6 +53,7 @@ function Home({
                         price = {price}
                         user = {user}
                         setShowLogin={setShowLogin}
+                        setCartMessage={setCartMessage}
                         
                     />
 

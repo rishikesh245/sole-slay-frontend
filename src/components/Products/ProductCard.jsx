@@ -10,7 +10,9 @@ function ProductCard({
     images = [],
     user,
     setShowLogin,
-    stock
+    stock,
+    setCartMessage,
+    cartMessage
 }) {
 
     const { cartItems, setCartItems } = useContext(CartContext);
@@ -18,6 +20,8 @@ function ProductCard({
     const navigate = useNavigate();
 
     const [currentImage, setCurrentImage] = useState(0);
+
+   
 
 
 
@@ -93,6 +97,12 @@ function ProductCard({
         }
 
         addToCart();
+       if (setCartMessage) {
+        setCartMessage(`${name} added to cart!`);}
+
+        setTimeout(() => {
+            setCartMessage("");
+        }, 2500);
     }
 
     // PREVIOUS IMAGE
@@ -224,7 +234,8 @@ function ProductCard({
 
                     </button>
                 ) }
-            
+            {/* Success message: add it here */}
+
 
 
                 <button
@@ -239,6 +250,7 @@ function ProductCard({
 
             </div>
 
+           
 
         </div>
 

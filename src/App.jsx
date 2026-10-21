@@ -36,6 +36,8 @@ function App() {
   const [price,setPrice] = useState("All")
 
   const [showLogin, setShowLogin] = useState(false);
+
+  const [cartMessage, setCartMessage] = useState("");
   
   const [user, setUser] = useState(() => {
 
@@ -66,12 +68,14 @@ function App() {
         setShowLogin = {setShowLogin}
         user = {user}
         setUser = {setUser}
+        cartMessage={cartMessage}
+        setCartMessage={setCartMessage}
       />
 
       {showLogin && (
     <Login setShowLogin={setShowLogin} 
            setUser = {setUser}/>
-)}
+)} 
 
       <Sidebar
         sidebarOpen={sidebarOpen}
@@ -96,6 +100,7 @@ function App() {
           price = {price}
           user = {user}
           setShowLogin={setShowLogin}
+          setCartMessage={setCartMessage}
           />}
         />
 
@@ -110,6 +115,7 @@ function App() {
             user={user}
             setShowLogin={setShowLogin}
             isShop={true}
+            sertCartMessage={setCartMessage}
         />
     } 
 />
@@ -150,7 +156,8 @@ function App() {
         path="/product/:id"
         element={<ProductDetails
           user = {user}
-          setShowLogin = {setShowLogin} />}
+          setShowLogin = {setShowLogin}
+          setCartMessage = {setCartMessage} />}
         />
 
         <Route
