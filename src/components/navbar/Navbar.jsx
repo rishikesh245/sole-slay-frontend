@@ -19,7 +19,9 @@ function Navbar({
   user,
   setUser,
   cartMessage,
-  setCartMessage
+  setCartMessage,
+  loginSuccessMessage,
+  setLoginSuccessMessage
 }) {
 
   const { cartItems } = useContext(CartContext);
@@ -33,6 +35,16 @@ function Navbar({
 
     return () => clearTimeout(timer);
 }, [cartMessage, setCartMessage]);
+
+useEffect(() => {
+  if (!loginSuccessMessage) return;
+
+  const timer = setTimeout(() => {
+    setLoginSuccessMessage("");
+  }, 2500);
+
+  return () => clearTimeout(timer);
+}, [loginSuccessMessage, setLoginSuccessMessage]);
 
  
 
@@ -173,6 +185,13 @@ function Navbar({
             ✓ {cartMessage}
           </div>
         )}
+
+        {/* LOGIN SUCCESS MESSAGE */}
+{loginSuccessMessage && (
+<div className="login-success-popup">
+✓ {loginSuccessMessage}
+</div>
+)}
 
         {/* USER */}
 

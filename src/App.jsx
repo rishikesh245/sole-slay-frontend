@@ -39,6 +39,8 @@ function App() {
 
   const [cartMessage, setCartMessage] = useState("");
   
+  const [loginSuccessMessage, setLoginSuccessMessage] = useState("");
+  
   const [user, setUser] = useState(() => {
 
     const savedUser = localStorage.getItem("user");
@@ -70,11 +72,15 @@ function App() {
         setUser = {setUser}
         cartMessage={cartMessage}
         setCartMessage={setCartMessage}
+        loginSuccessMessage={loginSuccessMessage}
+        setLoginSuccessMessage={setLoginSuccessMessage}
       />
 
       {showLogin && (
     <Login setShowLogin={setShowLogin} 
-           setUser = {setUser}/>
+           setUser = {setUser}
+           setLoginSuccessMessage = {setLoginSuccessMessage}
+    />
 )} 
 
       <Sidebar
@@ -137,6 +143,7 @@ function App() {
           (<Login 
             setShowLogin={setShowLogin}
             setUser={setUser} 
+            setLoginSuccessMessage={setLoginSuccessMessage}
             />
           )
         }

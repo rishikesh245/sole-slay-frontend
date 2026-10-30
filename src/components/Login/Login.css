@@ -141,3 +141,19 @@
 
     margin-left: 5px;
 }
+
+.login-navbar-container {
+position: fixed;
+top: 75px;
+right: 25px;
+z-index: 2000;
+width: min(410px, calc(100vw - 24px));
+box-sizing: border-box;
+}
+
+.login-navbar-container .login-popup {
+width: 100%;
+box-sizing: border-box;
+max-height: calc(100vh - 95px);
+overflow-y: auto;
+}

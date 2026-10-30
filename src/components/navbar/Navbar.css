@@ -719,3 +719,25 @@
     font-weight: 600;
     white-space: nowrap;
 }
+
+.login-success-popup {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  left: auto;
+  transform: none;
+  z-index: 3000;
+
+  padding: 10px 16px;
+
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+  border-radius: 8px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
