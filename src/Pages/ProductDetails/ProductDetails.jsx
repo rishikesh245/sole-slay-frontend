@@ -7,7 +7,7 @@ import { getProductById } from "../../api/productApi";
 
 
 function ProductDetails({user,
-    setShowLogi,setCartMessage}
+    setShowLogin,setCartMessage}
     
 ) {
 
