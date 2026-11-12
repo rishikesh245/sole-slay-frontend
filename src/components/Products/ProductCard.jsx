@@ -1,261 +1,144 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CartContext } from "../../Context/Context.jsx";
-
+import { useCart } from "../../Context/Context.jsx";
+import { FaShoppingCart } from "react-icons/fa";
+import "./ProductCard.css";
 
 function ProductCard({
-    id,
-    name,
-    price,
-    images = [],
-    user,
-    setShowLogin,
-    stock,
-    setCartMessage,
-    cartMessage
+  id,
+  name,
+  price,
+  images = [],
+  stock,
+  subcategory,
 }) {
+  const { addToCart } = useCart();
+  const navigate = useNavigate();
+  const [currentImage, setCurrentImage] = useState(0);
 
-    const { cartItems, setCartItems } = useContext(CartContext);
+  // Extract direct Cloudinary URLs from database
+  const productImages = (Array.isArray(images) ? images : [])
+    .map((item) => (typeof item === "string" ? item : item?.image_url))
+    .filter(Boolean);
 
-    const navigate = useNavigate();
+  const primaryImage = productImages[currentImage] || productImages[0] || "";
 
-    const [currentImage, setCurrentImage] = useState(0);
-
-   
-
-
-
-
-    // Convert ProductImage objects
-    // into normal image URLs
-
-    const productImages = images.map(
-        (item) => item.image_url
+  const previousImage = (e) => {
+    e.stopPropagation();
+    setCurrentImage((prev) =>
+      prev === 0 ? productImages.length - 1 : prev - 1
     );
-
-
-    // ADD TO CART
-  
-
-    const addToCart = () => {
-
-        const existingProduct = cartItems.find(
-            (item) => item.id === id
-        );
-
-
-        if (existingProduct) {
-
-            const updatedCart = cartItems.map((item) => {
-
-                if (item.id === id) {
-
-                    return {
-                        ...item,
-                        quantity: item.quantity + 1
-                    };
-
-                }
-
-                return item;
-
-            });
-
-            setCartItems(updatedCart);
-
-        } else {
-
-            const newProduct = {
-
-                id: id,
-
-                name: name,
-
-                price: price,
-
-                image: productImages[0],
-
-                quantity: 1
-
-            };
-
-            setCartItems([
-                ...cartItems,
-                newProduct
-            ]);
-
-        }
-
-    };
-
-
-      const HandleAddtoCart = () => {
-        if (!user){
-            setShowLogin(true);
-            return;
-            
-        }
-
-        addToCart();
-       if (setCartMessage) {
-        setCartMessage(`${name} added to cart!`);}
-
-        setTimeout(() => {
-            setCartMessage("");
-        }, 2500);
-    }
-
-    // PREVIOUS IMAGE
-
-    const previousImage = () => {
-
-        setCurrentImage((prev) => {
-
-            if (prev === 0) {
-
-                return productImages.length - 1;
-
-            }
-
-            return prev - 1;
-
-        });
-
-    };
-
-
-    // NEXT IMAGE
-
-    const nextImage = () => {
-
-        setCurrentImage((prev) => {
-
-            if (prev === productImages.length - 1) {
-
-                return 0;
-
-            }
-
-            return prev + 1;
-
-        });
-
-    };
-
-
-    return (
-
-        <div className="product-card">
-
-
-            {/* IMAGE SLIDER */}
-
-            <div className="product-card-image">
-
-
-                {productImages.length > 0 && (
-
-                    <img
-                        src={productImages[currentImage]}
-                        alt={name}
-                        className= {Number(stock) === 0 ? "out-of-stock-image": ""}
-                    />
-
-                )}
-
-                {Number(stock) === 0 && (
-                 <span className="out-of-stock-badge">
-                  OUT OF STOCK
-                </span>
-                )}
-
-         
-
-
-                {/* SLIDER BUTTONS */}
-
-                {productImages.length > 1 && (
-
-                    <>
-
-                        <button
-                            type="button"
-                            className="card-slider-btn card-prev"
-                            onClick={previousImage}
-                        >
-                            ❮
-                        </button>
-
-
-                        <button
-                            type="button"
-                            className="card-slider-btn card-next"
-                            onClick={nextImage}
-                        >
-                            ❯
-                        </button>
-
-                    </>
-
-                )}
-
-            </div>
-
-
-            {/* PRODUCT NAME */}
-
-            <h3>
-                {name}
-            </h3>
-
-
-            {/* PRICE */}
-
-            <p>
-                ₹{price}
-            </p>
-
-
-            {/* BUTTONS */}
-
-            <div className="two-buttons">
-
-                {stock > 0 ? (<button
-                    type="button"
-                    className="add-cart-card-btn"
-                    onClick={HandleAddtoCart}>
-               
-                    Add to Cart
-                </button>):(
-                    <button type = "button"
-                            className="notify-btn"
-                            disabled>
-                         🔔 Notify Me
-
-                    </button>
-                ) }
-            {/* Success message: add it here */}
-
-
-
-                <button
-                    type="button"
-                    className="view-details-btn"
-                    onClick={() =>
-                        navigate(`/product/${id}`)
-                    }
-                >
-                    View Details
-                </button>
-
-            </div>
-
-           
-
+  };
+
+  const nextImage = (e) => {
+    e.stopPropagation();
+    setCurrentImage((prev) =>
+      prev === productImages.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const numPrice = Number(price) || 0;
+  const isOutOfStock = stock !== undefined && Number(stock) <= 0;
+  const categoryLabel = subcategory || "Footwear";
+
+  const handleAddToCart = (e) => {
+    e.stopPropagation();
+    if (isOutOfStock) return;
+    addToCart({ id, name, price, images, stock });
+  };
+
+  return (
+    <article
+      className="product-card product-showcase-card"
+      onClick={() => navigate(`/product/${id}`)}
+    >
+      {/* CLOUDINARY SHOE IMAGE STAGE */}
+      <div className="card-image-stage">
+        {primaryImage ? (
+          <img
+            src={primaryImage}
+            alt={name}
+            className={`card-shoe-img ${isOutOfStock ? "out-of-stock-image" : ""}`}
+            loading="lazy"
+          />
+        ) : (
+          <div className="card-no-image">No Image</div>
+        )}
+
+        {/* SLIDER CONTROLS FOR MULTI-IMAGE CLOUDINARY PRODUCTS */}
+        {productImages.length > 1 && (
+          <>
+            <button
+              type="button"
+              className="card-slider-btn card-prev"
+              onClick={previousImage}
+              aria-label="Previous Image"
+              title="Previous Image"
+            >
+              ❮
+            </button>
+            <button
+              type="button"
+              className="card-slider-btn card-next"
+              onClick={nextImage}
+              aria-label="Next Image"
+              title="Next Image"
+            >
+              ❯
+            </button>
+          </>
+        )}
+
+        {isOutOfStock && (
+          <span className="out-of-stock-badge">OUT OF STOCK</span>
+        )}
+      </div>
+
+      {/* PRODUCT INFO */}
+      <div className="card-info-content">
+        <p className="card-product-category">{categoryLabel}</p>
+
+        <h3 className="card-product-name" title={name}>
+          {name}
+        </h3>
+
+        {/* PRICING & ACTION ROW */}
+        <div className="card-price-action-row">
+          <div className="price-block">
+            <span className="current-selling-price">
+              ₹
+              {numPrice.toLocaleString("en-IN", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
+            </span>
+          </div>
+
+          {!isOutOfStock ? (
+            <button
+              type="button"
+              className="card-cart-btn"
+              onClick={handleAddToCart}
+              aria-label={`Add ${name} to cart`}
+              title="Add to cart"
+            >
+              <FaShoppingCart className="cart-btn-icon" />
+              <span>Add</span>
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="card-cart-btn disabled"
+              disabled
+              title="Out of stock"
+            >
+              Sold Out
+            </button>
+          )}
         </div>
-
-    );
-
+      </div>
+    </article>
+  );
 }
 
 export default ProductCard;

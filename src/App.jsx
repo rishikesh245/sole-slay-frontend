@@ -1,213 +1,107 @@
 import "./App.css";
-
-import { useState } from "react";
-
+import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 import Navbar from "./components/navbar/Navbar";
-import ProductDetails from "./Pages/ProductDetails/ProductDetails";
 import Sidebar from "./components/Sidebar/Sidebar";
-
 import Home from "./Pages/Home";
-
-import Cart from "./components/Cart/Cart";
-import Checkout from "./Pages/Checkout/Checkout";
-import OrderSuccess from "./Pages/OrderSuccess/OrderSuccess";
-import MyOrders from "./Pages/MyOrders/MyOrders";
-
 import Login from "./components/Login/Login";
+import Footer from "./components/Footer/Footer";
+import ToastContainer from "./components/Toast/ToastContainer";
+import { useAuth } from "./Context/Context";
 
-import Addproduct from "./Pages/Admin/AddProduct";
-import EditProduct from "./Pages/Admin/EditProduct";
-import AdminProducts from "./Pages/Admin/AdminProducts";
-import Dashboard from "./Pages/Admin/Dashboard";
-
-import Footer from "./components/Footer/Footer"
+// Route-Level Code Splitting for Ultra-Fast Initial Page Loads
+const ProductDetails = lazy(() =>
+  import("./Pages/ProductDetails/ProductDetails")
+);
+const Cart = lazy(() => import("./components/Cart/Cart"));
+const Checkout = lazy(() => import("./Pages/Checkout/Checkout"));
+const OrderSuccess = lazy(() => import("./Pages/OrderSuccess/OrderSuccess"));
+const MyOrders = lazy(() => import("./Pages/MyOrders/MyOrders"));
+const Addproduct = lazy(() => import("./Pages/Admin/AddProduct"));
+const EditProduct = lazy(() => import("./Pages/Admin/EditProduct"));
+const AdminProducts = lazy(() => import("./Pages/Admin/AdminProducts"));
+const Dashboard = lazy(() => import("./Pages/Admin/Dashboard"));
 
 function App() {
-
- 
-
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [category, setCategory] = useState("All");
-  const [subcategory,setSubCategory] = useState("");
-  const [price,setPrice] = useState("All")
-
-  const [showLogin, setShowLogin] = useState(false);
-
-  const [cartMessage, setCartMessage] = useState("");
-  
-  const [loginSuccessMessage, setLoginSuccessMessage] = useState("");
-  
-  const [user, setUser] = useState(() => {
-
-    const savedUser = localStorage.getItem("user");
-
-    if (savedUser) {
-      return JSON.parse(savedUser);
-    }
-
-    return null;
-  });
-
-   const clearFilters = () => {
-
-        setCategory("All");
-        setSubCategory("");
-        setPrice("All");
-
-    };
+  const { user, showLogin, closeLogin } = useAuth();
 
   return (
     <>
-      <Navbar
-        
-        setSidebarOpen={setSidebarOpen}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        setShowLogin = {setShowLogin}
-        user = {user}
-        setUser = {setUser}
-        cartMessage={cartMessage}
-        setCartMessage={setCartMessage}
-        loginSuccessMessage={loginSuccessMessage}
-        setLoginSuccessMessage={setLoginSuccessMessage}
-      />
+      <Navbar />
 
-      {showLogin && (
-    <Login setShowLogin={setShowLogin} 
-           setUser = {setUser}
-           setLoginSuccessMessage = {setLoginSuccessMessage}
-    />
-)} 
+      {showLogin && <Login onClose={closeLogin} />}
 
-      <Sidebar
-        sidebarOpen={sidebarOpen}
-        setSidebarOpen={setSidebarOpen}
-        category={category}
-        onCategoryChange={setCategory}
-        onSubcategoryChange={setSubCategory}
-        price={price}
-        onPriceChange = {setPrice}
-        onClearFilters = {clearFilters}
-        user={user}
-        setUser={setUser}
-      />
+      <Sidebar />
 
-        <Routes>
-        <Route
-         path="/"
-         element={<Home 
-          searchTerm={searchTerm} 
-          category={category} 
-          subcategory = {subcategory}
-          price = {price}
-          user = {user}
-          setShowLogin={setShowLogin}
-          setCartMessage={setCartMessage}
-          />}
-        />
-
-        <Route 
-    path="/shop" 
-    element={
-        <Home  
-            searchTerm={searchTerm}  
-            category={category}  
-            subcategory={subcategory} 
-            price={price}
-            user={user}
-            setShowLogin={setShowLogin}
-            isShop={true}
-            sertCartMessage={setCartMessage}
-        />
-    } 
-/>
-
-        <Route
-    path="/cart"
-    element={
-        <Cart
-            user={user}
-            setShowLogin={setShowLogin}
-        />
-    }
-/>
-
-
-        <Route 
-        path = "/checkout"
-        element = {user ?(<Checkout/>):
-          (<Login 
-            setShowLogin={setShowLogin}
-            setUser={setUser} 
-            setLoginSuccessMessage={setLoginSuccessMessage}
-            />
-          )
+      <Suspense
+        fallback={
+          <div className="page-loader">
+            <div className="spinner"></div>
+          </div>
         }
-        />  
+      >
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/shop" element={<Home isShop={true} />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route
+            path="/login"
+            element={<Login initialRegister={false} isFullPage={true} />}
+          />
+          <Route
+            path="/register"
+            element={<Login initialRegister={true} isFullPage={true} />}
+          />
+          <Route
+            path="/checkout"
+            element={user ? <Checkout /> : <Login isFullPage={true} />}
+          />
+          <Route path="/order-success" element={<OrderSuccess />} />
+          <Route path="/my-orders" element={<MyOrders />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
 
-        <Route 
-        path = "/order-success"
-        element = {<OrderSuccess/>}
-        />  
+          {/* Admin Protected Routes */}
+          <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute user={user}>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/add-product"
+            element={
+              <ProtectedRoute user={user}>
+                <Addproduct />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/edit-product/:id"
+            element={
+              <ProtectedRoute user={user}>
+                <EditProduct />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/products"
+            element={
+              <ProtectedRoute user={user}>
+                <AdminProducts />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </Suspense>
 
-        <Route 
-        path = "/my-orders"
-        element = {<MyOrders/>}
-        />
-
-        <Route
-        path="/product/:id"
-        element={<ProductDetails
-          user = {user}
-          setShowLogin = {setShowLogin}
-          setCartMessage = {setCartMessage} />}
-        />
-
-        <Route
-    path="/admin/dashboard"
-    element={
-        <ProtectedRoute user={user}>
-            <Dashboard />
-        </ProtectedRoute>
-    }
-/>
-        
-       <Route 
-  path="/admin/add-product"
-  element={
-    <ProtectedRoute user={user}>
-      <Addproduct />
-    </ProtectedRoute>
-  }
-/>
-
-<Route 
-  path="/admin/edit-product/:id"
-  element={
-    <ProtectedRoute user={user}>
-      <EditProduct />
-    </ProtectedRoute>
-  }
-/>
-
-<Route
-  path="/admin/products"
-  element={
-    <ProtectedRoute user={user}>
-      <AdminProducts />
-    </ProtectedRoute>
-  }
-/>
-</Routes>
-
-      
       <Footer />
-     
-   
+
+      {/* Global Real-Time Toast Notifications */}
+      <ToastContainer />
     </>
   );
 }

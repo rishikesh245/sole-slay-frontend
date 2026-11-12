@@ -7,6 +7,7 @@ import {
 } from "../../api/productApi";
 
 import { uploadImage } from "../../api/uploadApi";
+import { useToast } from "../../Context/Context";
 
 import "./AddProduct.css";
 
@@ -14,6 +15,7 @@ import "./AddProduct.css";
 function EditProduct() {
 
     const { id } = useParams();
+    const { showToast } = useToast();
 
 
     // =========================================
@@ -209,8 +211,9 @@ function EditProduct() {
 
             if (totalImages > 5) {
 
-                alert(
-                    "You can have maximum 5 images"
+                showToast(
+                    "You can have maximum 5 images",
+                    "error"
                 );
 
                 return prev;
@@ -318,8 +321,9 @@ function EditProduct() {
 
         if (images.length < 3) {
 
-            alert(
-                "Please have at least 3 images"
+            showToast(
+                "Please have at least 3 images",
+                "error"
             );
 
             return;
@@ -378,8 +382,9 @@ function EditProduct() {
             );
 
 
-            alert(
-                `${urls.length} images uploaded successfully!`
+            showToast(
+                `${urls.length} images uploaded successfully!`,
+                "success"
             );
 
         } catch (error) {
@@ -390,8 +395,9 @@ function EditProduct() {
             );
 
 
-            alert(
-                "Image upload failed"
+            showToast(
+                "Image upload failed",
+                "error"
             );
 
         }
@@ -414,8 +420,9 @@ function EditProduct() {
 
         if (images.length < 3) {
 
-            alert(
-                "Please add at least 3 images"
+            showToast(
+                "Please add at least 3 images",
+                "error"
             );
 
             return;
@@ -429,8 +436,9 @@ function EditProduct() {
 
         if (images.length > 5) {
 
-            alert(
-                "Maximum 5 images are allowed"
+            showToast(
+                "Maximum 5 images are allowed",
+                "error"
             );
 
             return;
@@ -447,8 +455,9 @@ function EditProduct() {
             images.length
         ) {
 
-            alert(
-                "Please click Upload before updating"
+            showToast(
+                "Please click Upload before updating",
+                "error"
             );
 
             return;
@@ -500,8 +509,9 @@ function EditProduct() {
             );
 
 
-            alert(
-                "Product updated successfully!"
+            showToast(
+                "Product updated successfully!",
+                "success"
             );
 
 
@@ -525,9 +535,10 @@ function EditProduct() {
             );
 
 
-            alert(
+            showToast(
                 error.response?.data?.message ||
-                "Update failed"
+                "Update failed",
+                "error"
             );
 
         }

@@ -4,6 +4,7 @@ import {
     getProducts,
     deleteProduct
 } from "../../api/productApi";
+import { useToast } from "../../Context/Context";
 
 import "./Adminproducts.css";
 
@@ -14,6 +15,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 
 function AdminProducts() {
 
+    const { showToast } = useToast();
     const [products, setProducts] = useState([]);
 
     const [category, setCategory] = useState("All");
@@ -46,6 +48,7 @@ function AdminProducts() {
                     (product) => product.id !== id
                 )
             );
+            showToast("Product deleted successfully!", "success");
 
 
         } catch (error) {
@@ -66,9 +69,10 @@ function AdminProducts() {
             );
 
 
-            alert(
+            showToast(
                 error.response?.data?.message ||
-                "Delete failed"
+                "Delete failed",
+                "error"
             );
 
         }

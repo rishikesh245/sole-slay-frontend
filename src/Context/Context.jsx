@@ -1,13 +1,21 @@
-import {createContext, useState} from "react";
+import { createContext, useContext } from "react";
 
-const CartContext = createContext();
-function CartProvider({children}) {
-    const [cartItems, setCartItems] = useState([]);
-    return(
-    <CartContext.Provider value={{cartItems, setCartItems}}>
-        {children}
-    </CartContext.Provider>
-        )
-}
+// =========================================================
+// CONTEXT DEFINITIONS
+// =========================================================
+export const CartContext = createContext();
+export const AuthContext = createContext();
+export const ProductContext = createContext();
+export const ToastContext = createContext();
+export const UIContext = createContext();
+export const WishlistContext = createContext(); // Legacy backwards compatibility
 
-export {CartContext, CartProvider};
+// =========================================================
+// HOOKS CONSUMERS
+// =========================================================
+export const useCart = () => useContext(CartContext);
+export const useAuth = () => useContext(AuthContext);
+export const useProducts = () => useContext(ProductContext);
+export const useToast = () => useContext(ToastContext);
+export const useUI = () => useContext(UIContext);
+export const useWishlist = () => useContext(WishlistContext);

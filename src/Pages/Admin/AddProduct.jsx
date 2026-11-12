@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 
 import { addProduct } from "../../api/productApi";
 import { uploadImage } from "../../api/uploadApi";
+import { useToast } from "../../Context/Context";
 
 import "./AddProduct.css";
 
 
 function AddProduct() {
 
+    const { showToast } = useToast();
     const navigate = useNavigate();
 
 
@@ -100,7 +102,7 @@ function AddProduct() {
 
         if (totalImages > 5) {
 
-            alert("You can select maximum 5 images");
+            showToast("You can select maximum 5 images", "error");
 
             return prev;
         }
@@ -176,8 +178,9 @@ function AddProduct() {
 
         if (images.length < 3 ) {
 
-            alert(
-                "Please select at least 3 images before uploading"
+            showToast(
+                "Please select at least 3 images before uploading",
+                "error"
             );
 
             return;
@@ -209,8 +212,9 @@ function AddProduct() {
         );
 
 
-        alert(
-            `${urls.length} images uploaded successfully!`
+        showToast(
+            `${urls.length} images uploaded successfully!`,
+            "success"
         );
 
 
@@ -222,8 +226,9 @@ function AddProduct() {
             error
         );
 
-        alert(
-            "Image upload failed"
+        showToast(
+            "Image upload failed",
+            "error"
         );
 
     }
@@ -245,8 +250,9 @@ function AddProduct() {
 
     if (images.length < 3) {
 
-        alert(
-            "Please add at least 3 images before adding the product"
+        showToast(
+            "Please add at least 3 images before adding the product",
+            "error"
         );
 
         return;
@@ -255,8 +261,9 @@ function AddProduct() {
 
     if (uploadedUrls.length !== images.length) {
 
-        alert(
-            "Please click Upload All before adding the product"
+        showToast(
+            "Please click Upload All before adding the product",
+            "error"
         );
 
         return;
@@ -298,8 +305,9 @@ function AddProduct() {
         );
 
 
-        alert(
-            "Product added successfully!"
+        showToast(
+            "Product added successfully!",
+            "success"
         );
 
 
@@ -327,9 +335,10 @@ function AddProduct() {
 
 
 
-        alert(
+        showToast(
             error.response?.data?.message ||
-            "Failed to add product"
+            "Failed to add product",
+            "error"
         );
 
     }
