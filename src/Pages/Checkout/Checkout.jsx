@@ -84,25 +84,29 @@ function Checkout() {
       };
 
       const response = await createOrder(orderData);
-      const placedOrder = response.data?.order || {
+      
+      // Merge backend order reference with local customer inputs so email & contact details are never lost
+      const placedOrder = {
         ...orderData,
-        id: Math.floor(1000 + Math.random() * 9000),
+        ...(response.data?.order || {}),
+        email: email.trim(),
+        name: user.name || orderData.name || "Customer",
+        mobile: mobile.trim(),
+        address: address.trim(),
       };
 
-      // Dispatch order confirmation email via EmailJS (if not already handled by backend)
-      if (!response.data?.email_dispatched) {
-        try {
-          await Promise.race([
-            sendOrderConfirmationEmail({
-              order: placedOrder,
-              items: cartItems,
-              user,
-            }),
-            new Promise((resolve) => setTimeout(resolve, 3500)),
-          ]);
-        } catch (emailErr) {
-          console.warn("Email confirmation notice:", emailErr);
-        }
+      // Dispatch real-time order confirmation email via EmailJS (awaited with 4s timeout)
+      try {
+        await Promise.race([
+          sendOrderConfirmationEmail({
+            order: placedOrder,
+            items: cartItems,
+            user,
+          }),
+          new Promise((resolve) => setTimeout(resolve, 4000)),
+        ]);
+      } catch (emailErr) {
+        console.warn("Email confirmation notice:", emailErr);
       }
 
       // Clear the local cart on verified atomic transaction commit

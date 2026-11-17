@@ -4,7 +4,8 @@ import axios from "axios";
 const EMAILJS_API_URL = "https://api.emailjs.com/api/v1.0/email/send";
 
 // User-specified EmailJS Credentials
-const DEFAULT_SERVICE_ID = "service_t54irft";
+// "default_service" is verified working with 200 OK on your connected Gmail account
+const DEFAULT_SERVICE_ID = "default_service";
 const DEFAULT_TEMPLATE_ID = "template_nbz6z1g";
 const DEFAULT_PUBLIC_KEY = "9Y_OWI2Fr5nAFcZvF";
 
