@@ -88,7 +88,7 @@ function Sidebar({
                 closeSidebar();
               }}
             >
-              👟 Products
+                👟 Products
             </button>
             <button
               onClick={() => {
