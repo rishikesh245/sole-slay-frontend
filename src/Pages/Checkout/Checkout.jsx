@@ -89,18 +89,20 @@ function Checkout() {
         id: Math.floor(1000 + Math.random() * 9000),
       };
 
-      // Dispatch order confirmation email via EmailJS (awaited with safety fallback)
-      try {
-        await Promise.race([
-          sendOrderConfirmationEmail({
-            order: placedOrder,
-            items: cartItems,
-            user,
-          }),
-          new Promise((resolve) => setTimeout(resolve, 3500)),
-        ]);
-      } catch (emailErr) {
-        console.warn("Email confirmation notice:", emailErr);
+      // Dispatch order confirmation email via EmailJS (if not already handled by backend)
+      if (!response.data?.email_dispatched) {
+        try {
+          await Promise.race([
+            sendOrderConfirmationEmail({
+              order: placedOrder,
+              items: cartItems,
+              user,
+            }),
+            new Promise((resolve) => setTimeout(resolve, 3500)),
+          ]);
+        } catch (emailErr) {
+          console.warn("Email confirmation notice:", emailErr);
+        }
       }
 
       // Clear the local cart on verified atomic transaction commit
